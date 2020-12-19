@@ -139,7 +139,7 @@ void KMeansClustering(std::vector<std::vector<PixelType> >& sampleVectors, std::
     EstimatorType::ParametersType estimatedMeans = estimator->GetParameters();
 
     using MembershipFunctionType = itk::Statistics::DistanceToCentroidMembershipFunction< MeasurementVectorType >; //typedef itk::Statistics::EuclideanDistanceMetric<MeasurementVectorType> MembershipFunctionType;
-    using MembershipFunctionPointer = MembershipFunctionType::Pointer; //aggiunto
+    using MembershipFunctionPointer = MembershipFunctionType::Pointer; //added
     
     typedef itk::Statistics::MinimumDecisionRule DecisionRuleType;
     DecisionRuleType::Pointer decisionRule = DecisionRuleType::New();
@@ -162,10 +162,10 @@ void KMeansClustering(std::vector<std::vector<PixelType> >& sampleVectors, std::
     for (unsigned int i = 0; i < numberOfClasses; i++) {
         classLabelsVector.push_back(i); // classLabelsVector[i] = i;
     }
-    ////////
-    classifier->SetClassLabels(classLabelsObject);  //SetMembershipFunctions(classLabels) ????
+    
+    classifier->SetClassLabels(classLabelsObject);  //SetMembershipFunctions(classLabels) 
 
-    ////
+
     using MembershipFunctionVectorObjectType = ClassifierType::MembershipFunctionVectorObjectType;
     using MembershipFunctionVectorType = ClassifierType::MembershipFunctionVectorType;
 
@@ -760,7 +760,7 @@ void SliceIntensityNormalization(int sliceIndex, SliceImageType::Pointer inputSl
         }
         PixelType value = inputIt.Get();
         measurement[0] = value;   
-        histogram->IncreaseFrequencyOfMeasurement(measurement, 1); //IncreaseFrequency ???
+        histogram->IncreaseFrequencyOfMeasurement(measurement, 1); //IncreaseFrequency 
     }
 
     const double lowerQuantile = 0.0;
